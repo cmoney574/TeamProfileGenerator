@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-// const generate = require('./generate')
+const generate = require('./src/generate')
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
@@ -76,9 +76,14 @@ const addEmp=()=> {
             return addEmp(team); 
         } else {
             console.log(team)
+            writefile(team);
             return team;
         }
     })
 };
 
 addEmp();
+
+function writefile (res){
+    fs.writeFileSync('index.html', generate(res))
+}
